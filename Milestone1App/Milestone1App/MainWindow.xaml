@@ -7,9 +7,11 @@
         mc:Ignorable="d"
         Title="Milestone1" Height="500" Width="500">
     <Grid>
-        <ComboBox x:Name="StateList" HorizontalAlignment="Left" Margin="151,63,0,0" VerticalAlignment="Top" Width="120" Height="38"/>
+        <ComboBox x:Name="StateList" HorizontalAlignment="Left" Margin="117,63,0,0" VerticalAlignment="Top" Width="120" Height="38" SelectionChanged="StateList_SelectionChanged"/>
         <Label x:Name="label" Content="State" HorizontalAlignment="Left" Margin="75,75,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Margin="75,136,0,0" VerticalAlignment="Top" Height="297" Width="355"/>
+        <ComboBox x:Name="CityList" HorizontalAlignment="Left" Margin="117,113,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CityList_SelectionChanged"/>
+        <Label x:Name="label1" Content="City" HorizontalAlignment="Left" Margin="75,106,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
