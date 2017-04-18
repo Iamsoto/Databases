@@ -52,3 +52,5 @@ C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\Tab1.g.cs
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\Tab1.baml
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\Tab2.g.cs
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\Tab2.baml

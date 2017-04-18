@@ -64,6 +64,9 @@
     <Compile Include="Tab1.xaml.cs">
       <DependentUpon>Tab1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tab2.xaml.cs">
+      <DependentUpon>Tab2.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +80,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Tab1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tab2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

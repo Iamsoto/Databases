@@ -12,6 +12,12 @@
         </Grid.RowDefinitions>
         <Label x:Name="label" Content="User ID:&#xD;&#xA;" HorizontalAlignment="Left" Height="32" Margin="0,10,0,0" VerticalAlignment="Top" Width="82"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="24" Margin="0,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114" TextChanged="textBox_TextChanged"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="380" Margin="150,143,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="311"/>
+        <Label x:Name="label1" Content="Tips by Friends" HorizontalAlignment="Left" Height="27" Margin="150,111,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="label2" Content="Name:" HorizontalAlignment="Left" Height="24" Margin="150,30,0,0" VerticalAlignment="Top" Width="69"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="24" Margin="219,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158" TextChanged="textBox1_TextChanged"/>
+        <Label x:Name="label3" Content="Stars" HorizontalAlignment="Left" Height="30" Margin="150,59,0,0" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="219,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158"/>
 
     </Grid>
 </UserControl>
