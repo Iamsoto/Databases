@@ -130,8 +130,8 @@ namespace Milestone1App
 
         }
 
-        // When the user is set
-        private void button_Click(object sender, RoutedEventArgs e)
+        // Code for generating our tables
+        private void generate_tables()
         {
             // No id has length less than 5!
             if (textBox.Text.Length < 5)
@@ -169,8 +169,7 @@ namespace Milestone1App
                     using (var readerUser = cmd.ExecuteReader())
                     {
                         readerUser.Read();
-                        textBox1.Text = textBox2.Text = textBox3.Text  = "";
-                        label5.Content = "";
+                        textBox1.Text = textBox2.Text = textBox3.Text = textBox7.Text = "";
                         if (readerUser.HasRows)
                         {
                             // Name textbox
@@ -183,7 +182,7 @@ namespace Milestone1App
                             textBox3.Text = readerUser.GetDouble(2).ToString();
 
                             //Yelping since laebl
-                            label5.Content = readerUser.GetString(3);
+                            textBox7.Text = readerUser.GetString(3);
                         }
 
                     }
@@ -216,8 +215,8 @@ namespace Milestone1App
                     }
 
 
-                            // Find the user's friends
-                            cmd.CommandText = "SELECT user_id FROM friend WHERE friend_of = '" + textBox.Text + "';";
+                    // Find the user's friends
+                    cmd.CommandText = "SELECT user_id FROM friend WHERE friend_of = '" + textBox.Text + "';";
                     using (var readerFriendIds = cmd.ExecuteReader())
                     {
                         // Find the friends ID's 
@@ -271,7 +270,8 @@ namespace Milestone1App
                                 {
                                     user_name = readerFriend.GetString(0),
                                     average_stars = readerFriend.GetDouble(1),
-                                    yelping_since = readerFriend.GetString(2)
+                                    yelping_since = readerFriend.GetString(2),
+                                    user_id = friend_user_id
                                 });
                             }
                         }
@@ -280,6 +280,12 @@ namespace Milestone1App
                 conn.Close();
             }
             dataGrid.ColumnFromDisplayIndex(4).SortDirection = System.ComponentModel.ListSortDirection.Descending;
+        }
+
+        // When the user is set
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            generate_tables();
         }
 
 
@@ -292,6 +298,41 @@ namespace Milestone1App
         {
             // Nothing
         }
+
+        // The remove friend button
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            // Cast data grid object to a friend
+            Friend friend = (Friend)FriendGrid1.SelectedItem;
+
+            // Create connection
+            using (var conn = new NpgsqlConnection(buildConnString()))
+            {
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+                string delete =
+                "DELETE FROM friend WHERE friend_of = '"
+                + textBox.Text + "' AND user_id = '" + friend.user_id + "';";
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = delete;
+                    cmd.ExecuteReader();
+                }
+                conn.Close();
+            }
+
+            generate_tables();
+
+                
+
+            }
     }
 
 }
