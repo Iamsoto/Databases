@@ -40,10 +40,6 @@ namespace Milestone1App
             //addStates();
         }
 
-        /*
-         * I - M -  P -  O -  R -  T -  A  - N - T:
-         * Our database is named milstone1db NOT milestone1db (Notice the placement of the first e)
-         */ 
         private string buildConnString()
         {
             return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone1DB";
