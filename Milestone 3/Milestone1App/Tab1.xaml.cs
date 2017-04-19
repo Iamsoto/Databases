@@ -103,9 +103,9 @@ namespace Milestone1App
             FriendGrid1.Columns.Add(col3);
 
             DataGridTextColumn col4 = new DataGridTextColumn();
-            col3.Header = "ID";
-            col3.Binding = new Binding("user_id");
-            FriendGrid1.Columns.Add(col3);
+            col4.Header = "ID";
+            col4.Binding = new Binding("user_id");
+            FriendGrid1.Columns.Add(col4);
 
         }
 

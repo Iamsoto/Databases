@@ -30,8 +30,8 @@
         <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="22" Margin="309,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38" TextChanged="textBox4_TextChanged"/>
         <TextBox x:Name="textBox5" HorizontalAlignment="Left" Height="22" Margin="371,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38" TextChanged="textBox5_TextChanged"/>
         <Label x:Name="label10" Content="F" HorizontalAlignment="Left" Height="39" Margin="347,99,0,0" VerticalAlignment="Top" Width="48" RenderTransformOrigin="-0.866,0.414"/>
-        <Label x:Name="label11" Content="U" HorizontalAlignment="Left" Height="38" Margin="414,98,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.385,0.662"/>
-        <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="21" Margin="437,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34"/>
+        <Label x:Name="label11" Content="U" HorizontalAlignment="Left" Height="38" Margin="414,98,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="-0.484,0.613"/>
+        <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="21" Margin="427,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34"/>
 
     </Grid>
 </UserControl>
