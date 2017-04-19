@@ -50,7 +50,7 @@ namespace Milestone1App
             dataGrid.Columns.Add(col1);
             DataGridTextColumn col2 = new DataGridTextColumn();
             col2.Header = "Business";
-            col2.Binding = new Binding("business_id");
+            col2.Binding = new Binding("business_name");
             dataGrid.Columns.Add(col2);
             DataGridTextColumn col3 = new DataGridTextColumn();
             col3.Header = "City";
@@ -76,6 +76,12 @@ namespace Milestone1App
         // Use_ID textbox change
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // No id has length less than 5!
+            if(textBox.Text.Length < 5)
+            {
+                return;
+            }
+
             // Create connection
             using (var conn = new NpgsqlConnection(buildConnString()))
             {
@@ -93,11 +99,39 @@ namespace Milestone1App
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
+
+                    //Find the user's info
+                    cmd.CommandText = 
+                        "SELECT user_name, average_stars, fans, yelping_since "  
+                        + "FROM yelp_user " 
+                        + "WHERE user_id = '" + textBox.Text + "';";
+                    using (var readerUser = cmd.ExecuteReader())
+                    {
+                        readerUser.Read();
+                        if(readerUser.HasRows)
+                        {
+                            // Name textbox
+                            textBox1.Text = readerUser.GetString(0);
+
+                            // Average Stars
+
+                            textBox2.Text = readerUser.GetDouble(1).ToString();
+
+                            // Fans
+                            textBox3.Text = readerUser.GetDouble(2).ToString();
+
+                            //Yelping since laebl
+                            label5.Content = readerUser.GetString(3);
+                        }
+
+                    }
+
+
+
+                    // Find the user's friends
                     cmd.CommandText = "SELECT user_id FROM friend WHERE friend_of = '" + textBox.Text + "';";
                     using (var readerFriendIds = cmd.ExecuteReader())
                     {
-                        // For each friend create a new list of friend_ids and list of tip infos 
-
                         // Find the friends ID's 
                         while (readerFriendIds.Read())
                         {
