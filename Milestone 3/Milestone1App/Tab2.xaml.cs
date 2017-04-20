@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Npgsql;
+using System.Threading;
 
 /*<Label Grid.Column="0" Grid.Row="0" Content="State" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
             <ComboBox Grid.Column="0" Grid.Row="0" Name="StateCombobox" HorizontalAlignment="Left" Margin="52,14,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="StateCombobox_SelectionChanged"/>
@@ -60,14 +61,48 @@ namespace Milestone1App
             addStates();
             addDaysOfTheWeek();
             addHours();
+            populateCategories();
             addBusinessColumns();
             defaultHour();
             defaultState();
+            defaultCity();
+            defaultZip();
+            defaultSelectedCategories();
+        }
+
+        void defaultSelectedCategories()
+        {
+            SelectedCategoryListBox.Items.Add("Restaurants");
+            SelectedCategoryListBox.Items.Add("Sandwiches");
+        }
+
+        void defaultZip()
+        {
+            ZipCodeList.SelectedItem = ZipCodeList.Items[ZipCodeList.Items.IndexOf("85003")];
+        }
+
+        void defaultCity()
+        {
+            CitiesListBox.SelectedItem = CitiesListBox.Items[CitiesListBox.Items.IndexOf("Phoenix")];
+        }
+
+        void populateCategories()
+        {
+            List<string> categories = new List<string>();
+            foreach (string category in executeQuery("SELECT DISTINCT category FROM categories"))
+            {
+                categories.Add(category);
+            }
+            categories.Sort();
+            foreach (string category in categories)
+            {
+                CategoriesListBox.Items.Add(category);
+            }
         }
 
         void defaultState()
         {
-            StateCombobox.SelectedItem = StateCombobox.Items[0];
+            StateCombobox.SelectedItem = StateCombobox.Items[StateCombobox.Items.IndexOf("AZ")];
         }
 
         void defaultHour()
@@ -202,7 +237,13 @@ namespace Milestone1App
         {
             try
             {
+                List<string> cities = new List<string>();
                 foreach (string city in executeQuery("SELECT DISTINCT city FROM business WHERE state='" + state + "'"))
+                {
+                    cities.Add(city);
+                }
+                cities.Sort();
+                foreach (string city in cities)
                 {
                     CitiesListBox.Items.Add(city);
                 }
@@ -222,8 +263,10 @@ namespace Milestone1App
 
         private void StateCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            for (int i = 0; i < CitiesListBox.Items.Count; i++)
-                CitiesListBox.Items.RemoveAt(i);
+            while (CitiesListBox.Items.Count > 0)
+            {
+                CitiesListBox.Items.RemoveAt(0);
+            }
             addCities((string)StateCombobox.SelectedValue);
         }
 
@@ -231,49 +274,128 @@ namespace Milestone1App
         {
             string query = "SELECT DISTINCT full_address FROM business WHERE state='" +
                 (string)StateCombobox.SelectedValue + "'" + " AND " + "city='" + (string)CitiesListBox.SelectedItem + "'";
+            Dictionary<string, string> all_zips = new Dictionary<string, string>();
             foreach (string item in executeQuery(query))
             {
                 string[] items = item.Split(' ');
                 string zip_code = items.Last();
-                ZipCodeList.Items.Add(zip_code);
+                int zip;
+                if (!ZipCodeList.Items.Contains(zip_code) && int.TryParse(zip_code, out zip))
+                {
+                   all_zips[zip_code.ToString()] = (zip_code.ToString());
+                }
+            }
+            List<string> zips = new List<string>(all_zips.Values);
+            zips.Sort();
+            foreach (string zip in zips)
+            {
+                ZipCodeList.Items.Add(zip);
             }
         }
 
         private void CitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            for (int i = 0; i < ZipCodeList.Items.Count; i++)
+            while (ZipCodeList.Items.Count > 0)
             {
-                ZipCodeList.Items.RemoveAt(i);
+                ZipCodeList.Items.RemoveAt(0);
             }
             addZips();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PopUpBox p = new PopUpBox();
-            p.Closed += popup_Closed;
-            p.Show();
+            foreach (var cell in CategoriesListBox.SelectedItems)
+            {
+                SelectedCategoryListBox.Items.Add(cell);
+            }
         }
 
         void popup_Closed(object sender, EventArgs e)
         {
-            CategoryListBox.Items.Add((sender as PopUpBox).Category);
+            //CategoryListBox.Items.Add((sender as PopUpBox).Category);
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            CategoryListBox.Items.RemoveAt(CategoryListBox.SelectedIndex);
+            SelectedCategoryListBox.Items.RemoveAt(SelectedCategoryListBox.SelectedIndex);
         }
+
+        private string AND()
+        {
+            return " AND ";
+        }
+
+        string searchBusinessesQuery(string day, string start_time, string end_time, string category, string zip)
+        {
+            string query = string.Format("SELECT B.business_id\nFROM business AS B {0} \nWHERE B.business_id = C.business_id\n", ", categories as C");
+            query += AND();
+            query += "B.state = '" + StateCombobox.SelectedItem + "'" + "\n";
+            query += AND();
+            query += "B.city='" + CitiesListBox.SelectedItem + "'" + "\n";
+            if (category != ""){
+                query += AND();
+                query += "C.category = '" + category + "'";
+            }
+            query += AND();
+            query += " B.full_address LIKE '%" + zip + "'";
+            return query;
+        }
+
+        private void clearBusinessDataGrid()
+        {
+            while (BusinessGrid.Items.Count > 0)
+            {
+                BusinessGrid.Items.RemoveAt(0);
+            }
+        }
+
+        /*
+        SELECT *
+        FROM business AS B, week_days AS W
+        WHERE B.business_id = W.business_id
+        AND B.state = 'AZ'
+        AND B.city = 'Wickenburg' 
+        AND W.open_hour >= '11:00'
+        AND W.close_hour <= '23:00'
+        */
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string query = "SELECT * FROM business WHERE ";
-            query += "state='" + StateCombobox.SelectedItem + "'";
-            query += " AND ";
-            query += "city='" + CitiesListBox.SelectedItem + "'";
-            using (var conn = new NpgsqlConnection(buildConnString()))
+            Dictionary<string, BusinessInfo> businesses = new Dictionary<string, BusinessInfo>();
+
+            clearBusinessDataGrid();
+
+            string week = (string)WeekdayBox.SelectedValue;
+            string start = (string)FromBox.SelectedValue;
+            string end = (string)ToBox.SelectedValue;
+
+            string query = SelectedCategoryListBox.Items.Count == 0 ? searchBusinessesQuery(week, start, end, "", (string)ZipCodeList.SelectedItem) : "";
+
+            string operation = "\n INTERSECT \n";
+
+            foreach (string category in SelectedCategoryListBox.Items)
             {
-                try{ conn.Open(); }
+                query += "\n" + searchBusinessesQuery(week, start, end, category, (string)ZipCodeList.SelectedItem) + "\n";
+                query += operation;
+            }
+
+            if (SelectedCategoryListBox.Items.Count > 0)
+            {
+                query = query.Remove(query.Count() - operation.Length);
+            }
+
+            //query = "SELECT DISTINCT business_id FROM (\n" + query + "\n) AS B, business as B1\nWHERE B.business_id = B1.business_id\n";
+
+            query = "SELECT DISTINCT B.business_id, business_name, full_address, state, city, latitude, longitude, stars, yelp_type, open, review_count, num_checkins FROM (\n" + query + "\n) AS S, Business as B, week_days as W\n";
+            query = query + "WHERE S.business_id = B.business_id AND W.business_id = B.business_id AND W.open_hour>='" + FromBox.SelectedItem + "'" + " AND W.close_hour<='" + ToBox.SelectedItem + "'" + " AND W.weekday='" + WeekdayBox.SelectedItem + "'";
+
+            Clipboard.SetText(query);
+
+            Thread messageThread = new Thread(() => MessageBox.Show(query));
+            messageThread.Start();
+
+            using (var conn = new NpgsqlConnection(buildConnString())) {
+                try { conn.Open(); }
                 catch { }
 
                 // Execute sql command
@@ -289,24 +411,20 @@ namespace Milestone1App
                         {
                             var this_business = new BusinessInfo()
                             {
-                                business_id = reader.GetString(0),
-                                business_name = reader.GetString(1),
-                                full_address = reader.GetString(2),
-                                state = reader.GetString(3),
-                                city = reader.GetString(4),
-                                latitude = reader.GetDouble(5).ToString(),
-                                longitude = reader.GetDouble(6).ToString(),
-                                stars = reader.GetDouble(7).ToString(),
-                                yelp_type = reader.GetString(8),
-                                open = reader.GetString(9),
-                                review_count = reader.GetInt32(10).ToString(),
-                                num_checkins = reader.GetInt32(11).ToString(),
+                                business_id = reader.GetString(0), business_name = reader.GetString(1), full_address = reader.GetString(2),
+                                state = reader.GetString(3), city = reader.GetString(4), latitude = reader.GetDouble(5).ToString(),
+                                longitude = reader.GetDouble(6).ToString(), stars = reader.GetDouble(7).ToString(), yelp_type = reader.GetString(8),
+                                open = reader.GetString(9), review_count = reader.GetInt32(10).ToString(), num_checkins = reader.GetInt32(11).ToString(),
                             };
-                            BusinessGrid.Items.Add(this_business);
+                            businesses[this_business.business_id] = this_business;
                         }
                     }
                 }
-                conn.Close();
+            }
+            Thread fetchedThread = new Thread(() => MessageBox.Show(string.Format("Fetched {0} items", businesses.Count)));
+            fetchedThread.Start();
+            foreach (var business in businesses){
+                BusinessGrid.Items.Add(business.Value);
             }
         }
     }
