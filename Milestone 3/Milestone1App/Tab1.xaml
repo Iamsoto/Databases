@@ -12,17 +12,27 @@
         </Grid.RowDefinitions>
         <Label x:Name="label" Content="User ID:&#xD;&#xA;" HorizontalAlignment="Left" Height="32" Margin="0,10,0,0" VerticalAlignment="Top" Width="82"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="24" Margin="0,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114" TextChanged="textBox_TextChanged"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="380" Margin="150,143,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="311"/>
-        <Label x:Name="label1" Content="Tips by Friends" HorizontalAlignment="Left" Height="27" Margin="150,125,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.471,1.915"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="380" Margin="179,143,-36,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="328"/>
+        <Label x:Name="label1" Content="Tips by Friends" HorizontalAlignment="Left" Height="27" Margin="174,125,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.471,1.915"/>
         <Label x:Name="label2" Content="Name:" HorizontalAlignment="Left" Height="24" Margin="131,30,0,0" VerticalAlignment="Top" Width="69"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="24" Margin="179,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" TextChanged="textBox1_TextChanged"/>
         <Label x:Name="label3" Content="Stars" HorizontalAlignment="Left" Height="30" Margin="131,59,0,0" VerticalAlignment="Top" Width="50"/>
         <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="179,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" RenderTransformOrigin="-0.027,0.665"/>
         <Label x:Name="label4" Content="Yelping since" HorizontalAlignment="Left" Height="30" Margin="289,30,0,0" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.532,0.033"/>
-        <Label x:Name="label5" Content="" HorizontalAlignment="Left" Height="12" Margin="371,42,0,0" VerticalAlignment="Top" Width="66"/>
-        <Label x:Name="label6" Content="Votes" HorizontalAlignment="Left" Height="23" Margin="289,66,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label x:Name="label6" Content="Votes" HorizontalAlignment="Left" Height="23" Margin="289,76,0,0" VerticalAlignment="Top" Width="58"/>
         <Label x:Name="label7" Content="Fans" HorizontalAlignment="Left" Height="26" Margin="131,94,0,0" VerticalAlignment="Top" Width="50"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="22" Margin="179,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.399,1.269"/>
+        <DataGrid x:Name="FriendGrid1" HorizontalAlignment="Left" Height="380" Margin="1,143,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="173"/>
+        <Label x:Name="label8" Content="Friends" HorizontalAlignment="Left" Height="26" Margin="4,117,0,0" VerticalAlignment="Top" Width="60"/>
+        <Button x:Name="button" Content="Set User" HorizontalAlignment="Left" Height="39" Margin="40,73,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.502,-0.044" Click="button_Click"/>
+        <Label x:Name="label9" Content="C" HorizontalAlignment="Left" Height="40" Margin="289,97,0,0" VerticalAlignment="Top" Width="36" RenderTransformOrigin="2.115,0.296"/>
+        <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="22" Margin="309,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38" TextChanged="textBox4_TextChanged"/>
+        <TextBox x:Name="textBox5" HorizontalAlignment="Left" Height="22" Margin="371,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38" TextChanged="textBox5_TextChanged"/>
+        <Label x:Name="label10" Content="F" HorizontalAlignment="Left" Height="39" Margin="347,99,0,0" VerticalAlignment="Top" Width="48" RenderTransformOrigin="-0.866,0.414"/>
+        <Label x:Name="label11" Content="U" HorizontalAlignment="Left" Height="38" Margin="414,98,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="-0.484,0.613"/>
+        <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="21" Margin="427,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="34"/>
+        <TextBox x:Name="textBox7" HorizontalAlignment="Left" Height="24" Margin="376,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="button1" Content="Remove Friend" HorizontalAlignment="Left" Height="22" Margin="4,345,0,0" Grid.Row="1" VerticalAlignment="Top" Width="97" Click="button1_Click"/>
 
     </Grid>
 </UserControl>
