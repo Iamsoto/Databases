@@ -5,27 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Milestone1App"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="748">
-
+             d:DesignHeight="720" d:DesignWidth="800"
+             Height="720" Width="800"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <Grid>
-        
-        <Grid HorizontalAlignment="Left" Height="720" Margin="0,0,0,0" VerticalAlignment="Top" Width="738">
-            <Label Grid.Column="0" Grid.Row="0" Content="State" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <ComboBox Grid.Column="0" Grid.Row="0" Name="StateCombobox" HorizontalAlignment="Left" Margin="52,14,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="StateCombobox_SelectionChanged"/>
-            <Label Grid.Column="0" Grid.Row="1" Content="City" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-            <ListBox Grid.Column="0" Grid.Row="2" SelectedItem="tets" Height="100" Width="160" Name="CitiesListBox" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" SelectionChanged="CitiesListBox_SelectionChanged"/>
-            <Label Grid.Column="0" Grid.Row="3" Content="Zipcode" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top"/>
-            <ListBox Grid.Column="0" Grid.Row="4" Name="ZipCodeList" HorizontalAlignment="Left" Height="250" Margin="10,208,0,0" VerticalAlignment="Top" Width="160"/>
-            <Button Grid.Column="0" Grid.Row="5" Content="Add" HorizontalAlignment="Left" Margin="10,463,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-            <Button Grid.Column="0" Grid.Row="5" Name="RemoveButton" Content="Remove" HorizontalAlignment="Left" Margin="97,463,0,0" VerticalAlignment="Top" Width="75" Click="RemoveButton_Click"/>
-            <ListBox Grid.Column="0" Grid.Row="6"  Name="CategoryListBox" Margin="12,488,566,107" Width="160"/>
-            <Button Grid.Column="0" Grid.Row="7" Content="Search Businesses" HorizontalAlignment="Left" Margin="10,618,0,0" VerticalAlignment="Top" Width="162"/>
+
+        <Grid HorizontalAlignment="Left" Height="720" VerticalAlignment="Top" Width="800">
+            <Label Content="State" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <ComboBox Name="StateCombobox" HorizontalAlignment="Left" Margin="52,14,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="StateCombobox_SelectionChanged"/>
+            <Label Content="City" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+            <ListBox SelectedItem="tets" Height="100" Width="160" Name="CitiesListBox" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" SelectionChanged="CitiesListBox_SelectionChanged"/>
+            <Label Content="Zipcode" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top"/>
+            <ListBox Name="ZipCodeList" HorizontalAlignment="Left" Height="250" Margin="10,208,0,0" VerticalAlignment="Top" Width="160"/>
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,463,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+            <Button Name="RemoveButton" Content="Remove" HorizontalAlignment="Left" Margin="97,463,0,0" VerticalAlignment="Top" Width="75" Click="RemoveButton_Click"/>
+            <ListBox Name="CategoryListBox" Margin="10,488,630,107" Width="160"/>
+            <Button Content="Search Businesses" HorizontalAlignment="Left" Margin="10,618,0,0" VerticalAlignment="Top" Width="162" Click="Button_Click_1"/>
             <Label Content="Day of the week" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top"/>
             <ComboBox Name="WeekdayBox" HorizontalAlignment="Left" Margin="300,14,0,0" VerticalAlignment="Top" Width="120"/>
             <Label Content="From" HorizontalAlignment="Left" Margin="425,10,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="467,14,0,0" VerticalAlignment="Top" Width="120"/>
-            <ComboBox HorizontalAlignment="Left" Margin="619,14,-1,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox Name ="FromBox" HorizontalAlignment="Left" Margin="467,14,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox Name="ToBox" HorizontalAlignment="Left" Margin="619,14,-1,0" VerticalAlignment="Top" Width="120"/>
             <Label Content="To" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top"/>
+            <DataGrid Name="BusinessGrid" HorizontalAlignment="Left" Margin="200,72,0,0" VerticalAlignment="Top" Height="566" Width="539"/>
         </Grid>
 
     </Grid>

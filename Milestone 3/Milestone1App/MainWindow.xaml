@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:Milestone1App"
         xmlns:uccustom="clr-namespace:Milestone1App"
         mc:Ignorable="d"
-        Title="Milestone3" Height="720" Width="600
+        Title="Milestone3" Height="720" Width="800
         ">
 
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="679" VerticalAlignment="Top" Width="572" Margin="10,0,0,0" SelectionChanged="tabControl_SelectionChanged_1">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="679" VerticalAlignment="Top" Width="800" Margin="10,0,0,0" SelectionChanged="tabControl_SelectionChanged_1">
             <TabItem Header="User Info&#xD;&#xA;" Margin="0,0,-19,14" RenderTransformOrigin="0.468,-0.192">
-                <uccustom:Tab1 Margin="0,-11,-4,-1" Loaded="Tab1_Loaded" Width="570"/>
+                <uccustom:Tab1 Margin="0,-11,-4,-1" Loaded="Tab1_Loaded" Width="800"/>
             </TabItem>
             <TabItem Header="Business Search&#xD;&#xA;" Margin="19,0,-36,12" RenderTransformOrigin="0.598,1">
-                <uccustom:Tab2 Margin="0,-11,-4,-1" Loaded="Tab1_Loaded" Width="570"/>
+                <uccustom:Tab2 Margin="0,-11,-4,-1" Loaded="Tab1_Loaded" Width="800"/>
             </TabItem>
         </TabControl>
     </Grid>

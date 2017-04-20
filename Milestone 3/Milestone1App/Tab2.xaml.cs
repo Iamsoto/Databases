@@ -33,6 +33,22 @@ using Npgsql;
 
 namespace Milestone1App
 {
+    public class BusinessInfo
+    {
+        public string business_id { get; set; }
+        public string business_name { get; set; }
+        public string full_address { get; set; }
+        public string state { get; set; }
+        public string city { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+        public string stars { get; set; }
+        public string yelp_type { get; set; }
+        public string open { get; set; }
+        public string review_count { get; set; }
+        public string num_checkins { get; set; }
+    }
+
     /// <summary>
     /// Interaction logic for Tab2.xaml
     /// </summary>
@@ -43,6 +59,96 @@ namespace Milestone1App
             InitializeComponent();
             addStates();
             addDaysOfTheWeek();
+            addHours();
+            addBusinessColumns();
+            defaultHour();
+            defaultState();
+        }
+
+        void defaultState()
+        {
+            StateCombobox.SelectedItem = StateCombobox.Items[0];
+        }
+
+        void defaultHour()
+        {
+            WeekdayBox.SelectedItem = WeekdayBox.Items[0];
+            FromBox.SelectedItem = FromBox.Items[0];
+            ToBox.SelectedItem = ToBox.Items[ToBox.Items.Count - 1];
+        }
+
+        void addBusinessColumns()
+        {
+            DataGridTextColumn col1 = new DataGridTextColumn();
+            col1.Header = "Business Id";
+            col1.Binding = new Binding("business_id");
+
+            DataGridTextColumn col2 = new DataGridTextColumn();
+            col2.Header = "Business Name";
+            col2.Binding = new Binding("business_name");
+
+            DataGridTextColumn col3 = new DataGridTextColumn();
+            col3.Header = "Full Address";
+            col3.Binding = new Binding("full_address");
+
+            DataGridTextColumn col4 = new DataGridTextColumn();
+            col4.Header = "State";
+            col4.Binding = new Binding("state");
+
+            DataGridTextColumn col5 = new DataGridTextColumn();
+            col5.Header = "City";
+            col5.Binding = new Binding("city");
+
+            DataGridTextColumn col6 = new DataGridTextColumn();
+            col6.Header = "Latitude";
+            col6.Binding = new Binding("latitude");
+
+            DataGridTextColumn col7 = new DataGridTextColumn();
+            col7.Header = "Longitude";
+            col7.Binding = new Binding("longitude");
+
+            DataGridTextColumn col8 = new DataGridTextColumn();
+            col8.Header = "Stars";
+            col8.Binding = new Binding("stars");
+
+            DataGridTextColumn col9 = new DataGridTextColumn();
+            col9.Header = "Yelp Type";
+            col9.Binding = new Binding("yelp_type");
+
+            DataGridTextColumn col10 = new DataGridTextColumn();
+            col10.Header = "Open";
+            col10.Binding = new Binding("open");
+
+            DataGridTextColumn col11 = new DataGridTextColumn();
+            col11.Header = "Review Count";
+            col11.Binding = new Binding("review_count");
+
+            DataGridTextColumn col12 = new DataGridTextColumn();
+            col12.Header = "Number of Checkins";
+            col12.Binding = new Binding("num_checkins");
+
+            BusinessGrid.Columns.Add(col1);
+            BusinessGrid.Columns.Add(col2);
+            BusinessGrid.Columns.Add(col3);
+            BusinessGrid.Columns.Add(col4);
+            BusinessGrid.Columns.Add(col5);
+            BusinessGrid.Columns.Add(col6);
+            BusinessGrid.Columns.Add(col7);
+            BusinessGrid.Columns.Add(col8);
+            BusinessGrid.Columns.Add(col9);
+            BusinessGrid.Columns.Add(col10);
+            BusinessGrid.Columns.Add(col11);
+            BusinessGrid.Columns.Add(col12);
+        }
+
+        void addHours()
+        {
+            for (int i = 0; i < 24; i++)
+            {
+                string hour = ((i < 10) ? "0" + i.ToString() : i.ToString()) + ":00";
+                FromBox.Items.Add(hour);
+                ToBox.Items.Add(hour);
+            }
         }
 
         void addDaysOfTheWeek()
@@ -157,6 +263,51 @@ namespace Milestone1App
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             CategoryListBox.Items.RemoveAt(CategoryListBox.SelectedIndex);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            string query = "SELECT * FROM business WHERE ";
+            query += "state='" + StateCombobox.SelectedItem + "'";
+            query += " AND ";
+            query += "city='" + CitiesListBox.SelectedItem + "'";
+            using (var conn = new NpgsqlConnection(buildConnString()))
+            {
+                try{ conn.Open(); }
+                catch { }
+
+                // Execute sql command
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = query;
+
+                    // Add to statelist
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var this_business = new BusinessInfo()
+                            {
+                                business_id = reader.GetString(0),
+                                business_name = reader.GetString(1),
+                                full_address = reader.GetString(2),
+                                state = reader.GetString(3),
+                                city = reader.GetString(4),
+                                latitude = reader.GetDouble(5).ToString(),
+                                longitude = reader.GetDouble(6).ToString(),
+                                stars = reader.GetDouble(7).ToString(),
+                                yelp_type = reader.GetString(8),
+                                open = reader.GetString(9),
+                                review_count = reader.GetInt32(10).ToString(),
+                                num_checkins = reader.GetInt32(11).ToString(),
+                            };
+                            BusinessGrid.Items.Add(this_business);
+                        }
+                    }
+                }
+                conn.Close();
+            }
         }
     }
 }
