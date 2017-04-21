@@ -80,6 +80,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="business_per_category.xaml.cs">
+      <DependentUpon>business_per_category.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CheckinChart.xaml.cs">
       <DependentUpon>CheckinChart.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,13 @@
     <Compile Include="Tab2.xaml.cs">
       <DependentUpon>Tab2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TipDisplay.xaml.cs">
+      <DependentUpon>TipDisplay.xaml</DependentUpon>
+    </Compile>
+    <Page Include="business_per_category.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CheckinChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tab2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TipDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

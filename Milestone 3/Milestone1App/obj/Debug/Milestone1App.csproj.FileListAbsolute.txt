@@ -129,3 +129,7 @@ C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\bin\Debug\ru\Microsoft.Expression.Interactions.resources.dll
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\bin\Debug\zh-Hans\Microsoft.Expression.Interactions.resources.dll
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\bin\Debug\zh-Hant\Microsoft.Expression.Interactions.resources.dll
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\business_per_category.g.cs
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\TipDisplay.g.cs
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\business_per_category.baml
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\TipDisplay.baml

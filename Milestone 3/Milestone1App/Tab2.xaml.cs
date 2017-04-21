@@ -474,9 +474,15 @@ namespace Milestone1App
         private void ShowCheckinsButton_Click(object sender, RoutedEventArgs e)
         {
              CheckinChart chart = new CheckinChart(selected_business.business_id, buildConnString());
-            chart.Show();
+             chart.Show();
             
 
+        }
+
+        private void ShowTipsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TipDisplay tDisplay = new TipDisplay(selected_business.business_id, buildConnString());
+            tDisplay.Show();
         }
     }
 }
