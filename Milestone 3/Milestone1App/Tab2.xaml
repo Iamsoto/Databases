@@ -27,9 +27,14 @@
             <ComboBox Name ="FromBox" HorizontalAlignment="Left" Margin="467,14,0,0" VerticalAlignment="Top" Width="120"/>
             <ComboBox Name="ToBox" HorizontalAlignment="Left" Margin="619,14,-1,0" VerticalAlignment="Top" Width="120"/>
             <Label Content="To" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top"/>
-            <DataGrid Name="BusinessGrid" HorizontalAlignment="Left" Margin="200,72,0,0" VerticalAlignment="Top" Height="566" Width="539"/>
+            <DataGrid Name="BusinessGrid" HorizontalAlignment="Left" Margin="200,72,0,0" VerticalAlignment="Top" Height="486" Width="539" SelectionChanged="BusinessGrid_SelectionChanged"/>
             <Label Content="Business Category" HorizontalAlignment="Left" Margin="10,331,0,0" VerticalAlignment="Top"/>
             <ListBox Name="CategoriesListBox" HorizontalAlignment="Left" Height="95" Margin="10,363,0,0" VerticalAlignment="Top" Width="160"/>
+            <Label Content="Selected Business" HorizontalAlignment="Left" Margin="200,558,0,0" VerticalAlignment="Top"/>
+            <ListBox Name="SelectedBusinessBox" HorizontalAlignment="Left" Height="24" Margin="203,584,0,0" VerticalAlignment="Top" Width="411"/>
+            <Button Name="CheckinButton" Content="Checkin" HorizontalAlignment="Left" Margin="664,588,0,0" VerticalAlignment="Top" Width="75" Click="CheckinButton_Click"/>
+            <TextBox Name="TipTextBox" HorizontalAlignment="Left" Height="23" Margin="203,615,0,0" TextWrapping="Wrap" Text="Insert a tip for this business" VerticalAlignment="Top" Width="411"/>
+            <Button Name="AddTipButton" Content="AddTip" HorizontalAlignment="Left" Margin="664,618,0,0" VerticalAlignment="Top" Width="75" Click="AddTipButton_Click"/>
         </Grid>
 
     </Grid>

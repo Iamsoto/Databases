@@ -427,5 +427,43 @@ namespace Milestone1App
                 BusinessGrid.Items.Add(business.Value);
             }
         }
+
+        BusinessInfo selected_business = null;
+
+        private void BusinessGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SelectedBusinessBox.Items.Count > 0)
+                SelectedBusinessBox.Items.RemoveAt(0);
+            selected_business = (BusinessInfo)BusinessGrid.SelectedValue;
+            Clipboard.SetText(selected_business.business_id);
+            SelectedBusinessBox.Items.Add(selected_business.business_name);
+        }
+
+        int checkin_num = 0;
+
+        private void CheckinButton_Click(object sender, RoutedEventArgs e)
+        {
+            //INSERT INTO checkin VALUES ('6UGAtEw8TH6J6YeRRZpwKg', 5, 3, 2, 'checkin') 
+            //create a new checkin
+            string business_id = selected_business.business_id;
+            int hour_start = FromBox.SelectedIndex; //convert the string hour start to a number
+            int weekday_num = WeekdayBox.SelectedIndex; //convert weekday string to a number
+            int count = ToBox.SelectedIndex - hour_start;
+            string query = string.Format("INSERT INTO CHECKIN VALUES ('{0}', {1}, {2}, {3}, '{4}')", business_id, hour_start, weekday_num, count, "checkin" + checkin_num.ToString());
+            executeQuery(query);
+        }
+
+        private void AddTipButton_Click(object sender, RoutedEventArgs e)
+        {
+            string user_id = ""; //FIGURE OUT WTF THIS IS SUPPOSED TO BE
+            string business_id = selected_business.business_id;
+            string tip_text = TipTextBox.Text; //the text of the tip
+            string likes = "0";
+            DateTime current_date = DateTime.Now;
+            string date = (string.Format("{0:MM/dd/yy}", current_date).Reverse().ToString());
+
+            string yelp_type = "";
+            string query = string.Format("INSERT INTO tips VALUES ('{0}', '{1}', '{2}', {3}, '{4}', '{5}'", user_id, business_id, tip_text, likes, date, yelp_type);
+        }
     }
 }
