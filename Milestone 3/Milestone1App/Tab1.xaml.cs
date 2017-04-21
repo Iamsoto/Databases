@@ -112,7 +112,7 @@ namespace Milestone1App
         // Builds a connection string
         private string buildConnString()
         {
-            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone2";
+            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone3";
         }
 
 
@@ -329,10 +329,56 @@ namespace Milestone1App
             }
 
             generate_tables();
+        }
 
-                
+        public List<string> executeQuery(string query)
+        {
+            List<string> items = new List<string>();
+            // Create connection
+            using (var conn = new NpgsqlConnection(buildConnString()))
+            {
+                try
+                {
+                    conn.Open();
+                }
 
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                // Execute sql command
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = query;
+
+                    // Add to statelist
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            items.Add(reader.GetString(0));
+                    }
+                }
+                conn.Close();
             }
+            return items;
+        }
+
+        private void RateFriendButton_Click(object sender, RoutedEventArgs e)
+        {
+            int rating;
+            if (int.TryParse(RatingBox.Text, out rating)){
+                if (rating < 0 || rating > 5)
+                    return;
+                string user_id = textBox.Text;
+                List<string> votes = executeQuery(string.Format("SELECT SUM(vote_count) FROM vote WHERE user_id='{0}'", user_id));
+                int num_votes = int.Parse(votes[0]);
+                //GET THE CURRENT RATING
+                string update_query = string.Format("UPDATE yelp_user SET average_stars=(average_stars+{0})/(2) WHERE user_id='{1}'", rating, user_id);
+                executeQuery(update_query);
+            }
+        }
     }
 
 }
