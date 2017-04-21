@@ -35,6 +35,10 @@
             <Button Name="CheckinButton" Content="Checkin" HorizontalAlignment="Left" Margin="664,588,0,0" VerticalAlignment="Top" Width="75" Click="CheckinButton_Click"/>
             <TextBox Name="TipTextBox" HorizontalAlignment="Left" Height="23" Margin="203,615,0,0" TextWrapping="Wrap" Text="Insert a tip for this business" VerticalAlignment="Top" Width="411"/>
             <Button Name="AddTipButton" Content="AddTip" HorizontalAlignment="Left" Margin="664,618,0,0" VerticalAlignment="Top" Width="75" Click="AddTipButton_Click"/>
+            <Button Name="ShowCheckinsButtn" Content="Show Checkins" HorizontalAlignment="Left" Margin="203,47,0,0" VerticalAlignment="Top" Width="92"/>
+            <Button Name="ShowTipsButton" Content="Show Tips" HorizontalAlignment="Left" Margin="301,47,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Name="BusPerCategoryButton" Content="# Businesses / category" HorizontalAlignment="Left" Margin="381,47,0,0" VerticalAlignment="Top" Width="206"/>
+            <Button Name="AvgStarsButton" Content="Avg Stars Per Category" HorizontalAlignment="Left" Margin="592,47,0,0" VerticalAlignment="Top" Width="147"/>
         </Grid>
 
     </Grid>
