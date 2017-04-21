@@ -465,5 +465,10 @@ namespace Milestone1App
             string yelp_type = "";
             string query = string.Format("INSERT INTO tips VALUES ('{0}', '{1}', '{2}', {3}, '{4}', '{5}'", user_id, business_id, tip_text, likes, date, yelp_type);
         }
+
+        public void show_checkins(object sender, RoutedEventArgs e) { }
+        public void show_tips(object sender, RoutedEventArgs e) { }
+        public void show_business_per_cat(object sender, RoutedEventArgs e) { }
+        public void show_avg_stars(object sender, RoutedEventArgs e) { }
     }
 }
