@@ -453,17 +453,27 @@ namespace Milestone1App
             executeQuery(query);
         }
 
+        public Func<Friend> selected_friend;
+
+
         private void AddTipButton_Click(object sender, RoutedEventArgs e)
         {
-            string user_id = ""; //FIGURE OUT WTF THIS IS SUPPOSED TO BE
+            string user_id = "5RhNs6Vkd1iq07-lyCKV6Q"; //FIGURE OUT WTF THIS IS SUPPOSED TO BE
             string business_id = selected_business.business_id;
             string tip_text = TipTextBox.Text; //the text of the tip
             string likes = "0";
             DateTime current_date = DateTime.Now;
-            string date = (string.Format("{0:MM/dd/yy}", current_date).Reverse().ToString());
+            string date = (string.Format("{0:yy/MM/dd}", current_date).ToString());
+
+            List<string> num_tips = executeQuery("SELECT COUNT(*) FROM tips");
+            int tip_num = int.Parse(num_tips[0]);
 
             string yelp_type = "";
-            string query = string.Format("INSERT INTO tips VALUES ('{0}', '{1}', '{2}', {3}, '{4}', '{5}'", user_id, business_id, tip_text, likes, date, yelp_type);
+            string query = string.Format("INSERT INTO tips VALUES ({0}, '{1}', '{2}', '{3}', {4}, '{5}', '{6}')", tip_num, user_id, business_id, tip_text, likes, date, yelp_type);
+            MessageBox.Show(query);
+            Clipboard.SetText(query);
+            executeQuery(query);
+            //ZlvVCqFKTMK4rBkTQzVBpA
         }
 
         public void show_checkins(object sender, RoutedEventArgs e) { }
