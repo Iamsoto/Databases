@@ -196,7 +196,7 @@ namespace Milestone1App
 
         private string buildConnString()
         {
-            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone3";
+            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone2";
         }
 
         public List<string> executeQuery(string query) 
@@ -476,9 +476,23 @@ namespace Milestone1App
             //ZlvVCqFKTMK4rBkTQzVBpA
         }
 
-        public void show_checkins(object sender, RoutedEventArgs e) { }
-        public void show_tips(object sender, RoutedEventArgs e) { }
-        public void show_business_per_cat(object sender, RoutedEventArgs e) { }
-        public void show_avg_stars(object sender, RoutedEventArgs e) { }
+
+
+
+
+        // Upon button clicks
+        private void ShowCheckinsButton_Click(object sender, RoutedEventArgs e)
+        {
+             CheckinChart chart = new CheckinChart(selected_business.business_id, buildConnString());
+             chart.Show();
+            
+
+        }
+
+        private void ShowTipsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TipDisplay tDisplay = new TipDisplay(selected_business.business_id, buildConnString());
+            tDisplay.Show();
+        }
     }
 }

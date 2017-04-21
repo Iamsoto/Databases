@@ -35,6 +35,8 @@
         <Button x:Name="button1" Content="Remove Friend" HorizontalAlignment="Left" Height="22" Margin="1,301,0,0" Grid.Row="1" VerticalAlignment="Top" Width="97" Click="button1_Click"/>
         <Button Name="RateFriendButton" Content="Rate Friend" HorizontalAlignment="Left" Margin="1,276,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="RateFriendButton_Click"/>
         <TextBox Name="RatingBox" HorizontalAlignment="Left" Height="20" Margin="81,276,0,0" Grid.Row="1" TextWrapping="Wrap" Text="[1-5]" VerticalAlignment="Top" Width="93"/>
+        <Image x:Name="image" Source="sh42.jpg" HorizontalAlignment="Left" Height="494" Margin="512,0,0,0" VerticalAlignment="Top" Width="256" RenderTransformOrigin="0.502,0.59" Grid.Row="1"/>
+        <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Height="145" Margin="512,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="231"/>
 
     </Grid>
 </UserControl>
