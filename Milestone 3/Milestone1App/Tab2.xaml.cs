@@ -196,7 +196,7 @@ namespace Milestone1App
 
         private string buildConnString()
         {
-            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone2";
+            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone3";
         }
 
         public List<string> executeQuery(string query) 
