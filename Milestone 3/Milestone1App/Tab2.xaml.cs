@@ -196,7 +196,7 @@ namespace Milestone1App
 
         private string buildConnString()
         {
-            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone3";
+            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone2";
         }
 
         public List<string> executeQuery(string query) 
@@ -432,9 +432,16 @@ namespace Milestone1App
 
         private void BusinessGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (SelectedBusinessBox.Items.Count > 0)
                 SelectedBusinessBox.Items.RemoveAt(0);
             selected_business = (BusinessInfo)BusinessGrid.SelectedValue;
+
+            if(selected_business == null)
+            {
+                return;
+            }
+
             Clipboard.SetText(selected_business.business_id);
             SelectedBusinessBox.Items.Add(selected_business.business_name);
         }
@@ -483,7 +490,11 @@ namespace Milestone1App
         // Upon button clicks
         private void ShowCheckinsButton_Click(object sender, RoutedEventArgs e)
         {
-             CheckinChart chart = new CheckinChart(selected_business.business_id, buildConnString());
+            if(selected_business == null)
+            {
+                return;
+            }
+            CheckinChart chart = new CheckinChart(selected_business.business_id, buildConnString());
              chart.Show();
             
 
@@ -497,7 +508,12 @@ namespace Milestone1App
 
         private void BusPerCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            BusinessPerCategory chartWindow = new BusinessPerCategory();
+            List<string> categories = new List<string>();
+            foreach (string item in SelectedCategoryListBox.Items)
+            {
+                categories.Add(item);
+            }
+            BusinessPerCategory chartWindow = new BusinessPerCategory(categories, buildConnString());
             chartWindow.Show();
         }
     }

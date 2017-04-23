@@ -99,6 +99,12 @@ namespace Milestone1App
                 
             }
 
+            max_label.Content = "Max out of: " + num_checkins_weekdays[index_max_day].ToString();
+            if (num_checkins_weekdays[index_max_day] == 0)
+            {
+                return;
+            }
+
             sunday.Value = (num_checkins_weekdays[0] / num_checkins_weekdays[index_max_day])*100;
             monday.Value = (num_checkins_weekdays[1] / num_checkins_weekdays[index_max_day]) *100;
             tuesday.Value = (num_checkins_weekdays[2] / num_checkins_weekdays[index_max_day]) *100;
@@ -106,7 +112,7 @@ namespace Milestone1App
             thursday.Value = (num_checkins_weekdays[4] / num_checkins_weekdays[index_max_day]) *100;
             friday.Value = (num_checkins_weekdays[5] / num_checkins_weekdays[index_max_day]) *100;
             saturday.Value = (num_checkins_weekdays[6] / num_checkins_weekdays[index_max_day]) *100;
-            max_label.Content = num_checkins_weekdays[index_max_day].ToString();
+            
 
 
 

@@ -5,8 +5,13 @@
         xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         Title="BusinessPerCategory" Height="300" Width="300">
     <Grid>
-        <DVC:Chart Name="BusinessPerCategoryChart">
-            
+        <DVC:Chart Name="BusinessPerCategoryChart" Margin="0,10,0,-10">
+            <DVC:Chart.Series>
+                <DVC:ColumnSeries 
+    	            IndependentValueBinding="{Binding Path=Key}"
+    	            DependentValueBinding="{Binding Path=Value}" Margin="0,0,-86,0">
+                </DVC:ColumnSeries>
+            </DVC:Chart.Series>
         </DVC:Chart>
     </Grid>
 </Window>
