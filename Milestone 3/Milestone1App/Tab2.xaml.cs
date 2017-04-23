@@ -449,7 +449,7 @@ namespace Milestone1App
             int hour_start = FromBox.SelectedIndex; //convert the string hour start to a number
             int weekday_num = WeekdayBox.SelectedIndex; //convert weekday string to a number
             int count = ToBox.SelectedIndex - hour_start;
-            string query = string.Format("INSERT INTO CHECKIN VALUES ('{0}', {1}, {2}, {3}, '{4}')", business_id, hour_start, weekday_num, count, "checkin" + checkin_num.ToString());
+            string query = string.Format("INSERT INTO checkin VALUES ('{0}', {1}, {2}, {3}, '{4}')", business_id, hour_start, weekday_num, count, "checkin" + checkin_num.ToString());
             executeQuery(query);
         }
 
@@ -498,6 +498,46 @@ namespace Milestone1App
         private void BusPerCategoryButton_Click(object sender, RoutedEventArgs e)
         {
             BusinessPerCategory chartWindow = new BusinessPerCategory();
+            chartWindow.Show();
+        }
+
+        private void avgStars_Click(object sender, RoutedEventArgs e)
+        {
+            StarsPerCategory chartWindow = new StarsPerCategory();
+            List<string> categories = new List<string>();
+            //for all the businesses selected
+            foreach (string category in SelectedCategoryListBox.Items)
+            {
+                categories.Add(category);
+            }
+
+            string avg_stars_query = "SELECT AVG(B.stars)::text ";
+            avg_stars_query += "FROM business AS B, categories as C WHERE B.business_id = C.business_id AND (";
+
+            //add the individual categories
+
+            for (int i = 0; i < categories.Count; i++)
+            {
+                string category = categories[i];
+                if (i > 0)
+                {
+                    avg_stars_query += " OR ";
+                }
+                avg_stars_query += string.Format("C.category = '{0}'", category);
+            }
+
+            avg_stars_query += ") GROUP BY C.category";
+
+            Clipboard.SetText(avg_stars_query);
+
+            List<string> average_stars = executeQuery(avg_stars_query);
+
+            for (int i = 0; i < average_stars.Count; i++)
+            {
+                double average = double.Parse(average_stars[i]);
+                chartWindow.AddCategory(categories[i], average);
+            }
+            chartWindow.load();
             chartWindow.Show();
         }
     }
