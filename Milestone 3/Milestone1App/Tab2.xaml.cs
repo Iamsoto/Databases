@@ -494,5 +494,11 @@ namespace Milestone1App
             TipDisplay tDisplay = new TipDisplay(selected_business.business_id, buildConnString());
             tDisplay.Show();
         }
+
+        private void BusPerCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            BusinessPerCategory chartWindow = new BusinessPerCategory();
+            chartWindow.Show();
+        }
     }
 }
