@@ -26,7 +26,7 @@
         <ProgressBar HorizontalAlignment="Left" Name ="saturday" Height="26" Margin="82,166,0,0" VerticalAlignment="Top" Width="200"/>
         <Label x:Name="label4_Copy1" Content="Sunday" HorizontalAlignment="Left" Height="32" Margin="17,198,0,0" VerticalAlignment="Top" Width="60"/>
         <ProgressBar HorizontalAlignment="Left" Name ="sunday" Height="26" Margin="82,198,0,0" VerticalAlignment="Top" Width="200"/>
-        <Label x:Name="max_label" Content="" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="29" Margin="17,230,0,0" VerticalAlignment="Top" Width="265"/>
+        <Label x:Name="max_label" Content="" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="29" Margin="27,235,0,0" VerticalAlignment="Top" Width="265"/>
 
     </Grid>
 </Window>

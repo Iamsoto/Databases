@@ -133,3 +133,7 @@ C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\TipDisplay.g.cs
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\business_per_category.baml
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\TipDisplay.baml
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\bin\Debug\WPFToolkit.dll
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\BusinessPerCategory.baml
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\BusinessPerCategory.g.cs
