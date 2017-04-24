@@ -99,6 +99,9 @@
     <Compile Include="PopUpBox.xaml.cs">
       <DependentUpon>PopUpBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StarsPerCategory.xaml.cs">
+      <DependentUpon>StarsPerCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tab1.xaml.cs">
       <DependentUpon>Tab1.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PopUpBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StarsPerCategory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

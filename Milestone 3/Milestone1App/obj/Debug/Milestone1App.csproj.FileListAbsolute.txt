@@ -137,3 +137,5 @@ C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\bin\Debug\WPFToolkit.dll
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\BusinessPerCategory.baml
 C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\BusinessPerCategory.g.cs
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\StarsPerCategory.baml
+C:\Users\Brian Soto\Desktop\Databases\Milestone3\Databases\Milestone 3\Milestone1App\obj\Debug\StarsPerCategory.g.cs
