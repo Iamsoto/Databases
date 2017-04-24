@@ -16,6 +16,10 @@ using Npgsql;
 
 namespace Milestone1App
 {
+    public static class CurrentUserInfo
+    {
+        public static string user_id;
+    }
 
     // CustomTipInfo
     public class TipInfo
@@ -112,7 +116,7 @@ namespace Milestone1App
         // Builds a connection string
         private string buildConnString()
         {
-            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone3";
+            return CreateConnectionString.build_connection_string();
         }
 
 
@@ -286,6 +290,7 @@ namespace Milestone1App
         private void button_Click(object sender, RoutedEventArgs e)
         {
             generate_tables();
+            CurrentUserInfo.user_id = textBox.Text;
         }
 
 
@@ -328,6 +333,7 @@ namespace Milestone1App
                 conn.Close();
             }
 
+   
             generate_tables();
         }
 

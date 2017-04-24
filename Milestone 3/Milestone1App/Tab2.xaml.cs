@@ -61,13 +61,13 @@ namespace Milestone1App
             addStates();
             addDaysOfTheWeek();
             addHours();
-            populateCategories();
+            //populateCategories();
             addBusinessColumns();
             defaultHour();
             defaultState();
             defaultCity();
             defaultZip();
-            defaultSelectedCategories();
+            //defaultSelectedCategories();
         }
 
         void defaultSelectedCategories()
@@ -88,8 +88,29 @@ namespace Milestone1App
 
         void populateCategories()
         {
+            if(StateCombobox.SelectedIndex == -1)
+            { return; }
+            CategoriesListBox.Items.Clear();
             List<string> categories = new List<string>();
-            foreach (string category in executeQuery("SELECT DISTINCT category FROM categories"))
+            string query =
+                @"SELECT DISTINCT category 
+                 FROM categories 
+                 INNER JOIN business b ON b.business_id = categories.business_id
+                 WHERE b.state = '" + StateCombobox.SelectedItem + "' " ;
+
+            if (CitiesListBox.SelectedIndex !=-1)
+            {
+                query += "AND city = '" + CitiesListBox.SelectedItem + "' ";
+            }
+
+            if(ZipCodeList.SelectedIndex != -1)
+            {
+                query += "AND full_address like '%" + ZipCodeList.SelectedItem + "' ";
+            }
+
+            query += ";";
+
+            foreach (string category in executeQuery(query))
             {
                 categories.Add(category);
             }
@@ -196,7 +217,7 @@ namespace Milestone1App
 
         private string buildConnString()
         {
-            return "Host=127.0.0.1; Username=postgres; Password=password; Database = Milestone2";
+            return CreateConnectionString.build_connection_string();
         }
 
         public List<string> executeQuery(string query) 
@@ -268,6 +289,7 @@ namespace Milestone1App
                 CitiesListBox.Items.RemoveAt(0);
             }
             addCities((string)StateCombobox.SelectedValue);
+            populateCategories();
         }
 
         private void addZips()
@@ -300,6 +322,7 @@ namespace Milestone1App
                 ZipCodeList.Items.RemoveAt(0);
             }
             addZips();
+            populateCategories();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -430,6 +453,11 @@ namespace Milestone1App
 
         BusinessInfo selected_business = null;
 
+        private void BusinessGrid_EditItem(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void BusinessGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -465,7 +493,7 @@ namespace Milestone1App
 
         private void AddTipButton_Click(object sender, RoutedEventArgs e)
         {
-            string user_id = "5RhNs6Vkd1iq07-lyCKV6Q"; //FIGURE OUT WTF THIS IS SUPPOSED TO BE
+            string user_id = CurrentUserInfo.user_id; 
             string business_id = selected_business.business_id;
             string tip_text = TipTextBox.Text; //the text of the tip
             string likes = "0";
@@ -555,6 +583,11 @@ namespace Milestone1App
             }
             chartWindow.load();
             chartWindow.Show();
+        }
+
+        private void ZipCodeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            populateCategories();
         }
     }
 }

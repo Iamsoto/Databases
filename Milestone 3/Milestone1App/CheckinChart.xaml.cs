@@ -11,7 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 using Npgsql;
+using System.Windows.Controls.DataVisualization;
+using System.Windows.Controls.Primitives;
+using System.Windows.Controls.DataVisualization.Charting;
 
 namespace Milestone1App
 {
@@ -81,7 +85,6 @@ namespace Milestone1App
         public void findNumWeekdays()
         {
             double[] num_checkins_weekdays = new double[7];
-            int index_max_day = 0;
             int total = 0;
             for (int i = 0; i < 7; i++)
             {
@@ -92,26 +95,21 @@ namespace Milestone1App
                     num_checkins_weekdays[i] += (double)count;
                     total += count;
                 }
-                if(num_checkins_weekdays[i] > num_checkins_weekdays[index_max_day])
+
+
+                ((ColumnSeries)CheckinChartGrid.Series[0]).ItemsSource = new KeyValuePair<string, int>[] 
                 {
-                    index_max_day = i;
-                }
-                
+                    new KeyValuePair<string, int>("Monday", (int)num_checkins_weekdays[1]),
+                    new KeyValuePair<string, int>("Tuesday", (int)num_checkins_weekdays[2]),
+                    new KeyValuePair<string, int>("Wednesday", (int)num_checkins_weekdays[3]),
+                    new KeyValuePair<string, int>("Thursday", (int)num_checkins_weekdays[4]),
+                    new KeyValuePair<string, int>("Friday", (int)num_checkins_weekdays[5]),
+                    new KeyValuePair<string, int>("Saturday", (int)num_checkins_weekdays[6]),
+                    new KeyValuePair<string, int>("Sunday", (int)num_checkins_weekdays[0]),
+
+                };
             }
 
-            max_label.Content = "Max out of: " + num_checkins_weekdays[index_max_day].ToString();
-            if (num_checkins_weekdays[index_max_day] == 0)
-            {
-                return;
-            }
-
-            sunday.Value = (num_checkins_weekdays[0] / num_checkins_weekdays[index_max_day])*100;
-            monday.Value = (num_checkins_weekdays[1] / num_checkins_weekdays[index_max_day]) *100;
-            tuesday.Value = (num_checkins_weekdays[2] / num_checkins_weekdays[index_max_day]) *100;
-            wednesday.Value = (num_checkins_weekdays[3] / num_checkins_weekdays[index_max_day]) *100;
-            thursday.Value = (num_checkins_weekdays[4] / num_checkins_weekdays[index_max_day]) *100;
-            friday.Value = (num_checkins_weekdays[5] / num_checkins_weekdays[index_max_day]) *100;
-            saturday.Value = (num_checkins_weekdays[6] / num_checkins_weekdays[index_max_day]) *100;
             
 
 

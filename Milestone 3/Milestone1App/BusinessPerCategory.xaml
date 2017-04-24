@@ -6,8 +6,8 @@
         Title="BusinessPerCategory" Height="300" Width="300">
     <Grid>
         <DVC:Chart Name="BusinessPerCategoryChart" Margin="0,10,0,-10">
-            <DVC:Chart.Series>
-                <DVC:ColumnSeries 
+            <DVC:Chart.Series >
+                <DVC:ColumnSeries Title="# Businesses"
     	            IndependentValueBinding="{Binding Path=Key}"
     	            DependentValueBinding="{Binding Path=Value}" Margin="0,0,-86,0">
                 </DVC:ColumnSeries>

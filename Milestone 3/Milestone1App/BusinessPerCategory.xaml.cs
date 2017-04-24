@@ -21,6 +21,7 @@ namespace Milestone1App
     /// <summary>
     /// Interaction logic for BusinessPerCategory.xaml
     /// </summary>
+
     public partial class BusinessPerCategory : Window
     {
         List<string> categories;
